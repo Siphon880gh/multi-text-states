@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Demo: Multi-Text States</title>
+</head>
+<body>
+    <span id="msgs" style="cursor:pointer;">
+        <span style="display:inline;">State 1</span>
+        <span style="display:none;">State 2</span>
+        <span style="display:none;">State 3</span>
+    </span>
+
+    <script>
+    targetContainerId = "msgs" /* Change this if need to */
+    displayMode = "inline"; /* Default that gets overridden based on the visible child */
+
+    $msgsContainer = document.getElementById("msgs");
+    $msgs = $msgsContainer.children;
+    $msgs = Array.from($msgs);
+    if($msgs.length===0) {
+        console.log("ERROR: #msgs need to have children");
+    } else {
+        $msgsContainer.onclick = ()=> {
+            $visible = null;
+            $msgs.forEach(($msg, i)=>{ 
+                if(!$msg.style.display || $msg.style.display!=="none") {
+                    $visible = $msg;
+                    if($msg.style.display) displayMode = $msg.style.display;
+                }
+            });
+            $next = $visible.nextElementSibling ? 
+                        $visible.nextElementSibling : $msgs[0];
+            $visible.style.display = "none";
+            $next.style.display = displayMode;
+        }
+    }
+    </script>
+</body>
+</html>
