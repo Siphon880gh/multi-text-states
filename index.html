@@ -17,7 +17,7 @@
     $msgs = $msgsContainer.children;
     $msgs = Array.from($msgs);
     if($msgs.length===0) {
-        console.log("ERROR: #msgs need to have children");
+        console.log("ERROR: targetContainerId needs to have children");
     } else {
         $msgsContainer.onclick = ()=> {
             $visible = null;
